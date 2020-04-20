@@ -32,16 +32,31 @@ class JavaScript {
 //   return lang;
 // }
 
-function getLanguage(type: Type) {
+// 2. in
+// function getLanguage(type: Type) {
+//   let lang = type === Type.Strong ? new Java() : new JavaScript();
+//   if ('helloJava' in lang) { // OK
+//     lang.helloJava(); // OK
+//   } else {
+//     lang.helloJavaScript(); // OK
+//   }
+//   return lang;
+// }
+
+// getLanguage(Type.Strong);
+
+// 3. typeof
+function getLanguage(type: Type, x: string | number) {
   let lang = type === Type.Strong ? new Java() : new JavaScript();
-  if (lang instanceof Java) { // OK
-    lang.helloJava(); // OK
+  if (typeof x === 'string') { // OK
+    x.length; // OK
   } else {
-    lang.helloJavaScript(); // OK
+    x.toFixed(); // OK
   }
   return lang;
 }
 
-getLanguage(Type.Strong);
+getLanguage(Type.Strong, '');
+
 
 
